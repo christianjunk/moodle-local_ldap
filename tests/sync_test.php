@@ -119,6 +119,13 @@ class local_ldap_sync_testcase extends advanced_testcase {
         }
         ldap_add($connection, 'cn='.$o['cn'].',ou=groups,'.$topdn, $o);
 
+        // Create an empty group.
+        $o = array();
+        $o['objectClass'] = array('groupOfNames');
+        $o['cn']          = 'emptyGroup';
+        $o['member']      = array();
+        ldap_add($connection, 'cn='.$o['cn'].',ou=groups,'.$topdn, $o);
+
         // Configure the authentication plugin a bit.
         set_config('host_url', TEST_AUTH_LDAP_HOST_URL, 'auth_ldap');
         set_config('start_tls', 0, 'auth_ldap');
@@ -166,6 +173,11 @@ class local_ldap_sync_testcase extends advanced_testcase {
         // Add the cohorts.
         $cohort = new stdClass();
         $cohort->contextid = context_system::instance()->id;
+        $cohort->name = "Empty Group";
+        $cohort->idnumber = 'emptyGroup';
+        $emptyid = cohort_add_cohort($cohort);
+        $cohort = new stdClass();
+        $cohort->contextid = context_system::instance()->id;
         $cohort->name = "History Department";
         $cohort->idnumber = 'history';
         $historyid = cohort_add_cohort($cohort);
@@ -180,13 +192,13 @@ class local_ldap_sync_testcase extends advanced_testcase {
         $cohort->idnumber = 'english(bis)';
         $englishbisid = cohort_add_cohort($cohort);
 
-        // We should find 2004 groups: the 2000 random groups, the three departments,
-        // and the all employees group.
+        // We should find 2005 groups: the 2000 random groups, the three departments,
+        // the empty group, and the all employees group.
         $plugin = new local_ldap();
         $groups = $plugin->ldap_get_grouplist();
-        $this->assertEquals(2004, count($groups));
+        $this->assertEquals(2005, count($groups));
 
-        // All three cohorts should have three members.
+        // All three department cohorts should have three members.
         $plugin->sync_cohorts_by_group();
         $members = $DB->count_records('cohort_members', array('cohortid' => $historyid));
         $this->assertEquals(3, $members);
@@ -194,6 +206,10 @@ class local_ldap_sync_testcase extends advanced_testcase {
         $this->assertEquals(3, $members);
         $members = $DB->count_records('cohort_members', array('cohortid' => $englishbisid));
         $this->assertEquals(3, $members);
+
+        // The empty cohort should be empty.
+        $members = $DB->count_records('cohort_members', array('cohortid' => $emptyid));
+        $this->assertEquals(0, $members);
 
         // Remove a user and then ensure he's re-added.
         $members = $plugin->get_cohort_members($englishid);
