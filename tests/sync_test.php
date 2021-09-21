@@ -119,11 +119,11 @@ class local_ldap_sync_testcase extends advanced_testcase {
         }
         ldap_add($connection, 'cn='.$o['cn'].',ou=groups,'.$topdn, $o);
 
-        // Create a group that we will empty.
+        // Create an "empty" group.
         $o = array();
         $o['objectClass'] = array('groupOfNames');
         $o['cn']          = 'emptyGroup';
-        $o['member']      = array('cn=username1,ou=users,'.$topdn);
+        $o['member']      = array('');
         ldap_add($connection, 'cn='.$o['cn'].',ou=groups,'.$topdn, $o);
 
         // Configure the authentication plugin a bit.
@@ -197,10 +197,6 @@ class local_ldap_sync_testcase extends advanced_testcase {
         $plugin = new local_ldap();
         $groups = $plugin->ldap_get_grouplist();
         $this->assertEquals(2005, count($groups));
-
-        // Empty the empty group.
-        ldap_mod_del($connection, "cn=emptyGroup,ou=groups,$topdn",
-            array($auth->config->memberattribute => "cn=username1,ou=users,$topdn"));
 
         // All three department cohorts should have three members.
         $plugin->sync_cohorts_by_group();
