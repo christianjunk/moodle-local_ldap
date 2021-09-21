@@ -119,12 +119,14 @@ class local_ldap_sync_testcase extends advanced_testcase {
         }
         ldap_add($connection, 'cn='.$o['cn'].',ou=groups,'.$topdn, $o);
 
-        // Create an empty group.
+        // Create a group that we will empty.
         $o = array();
         $o['objectClass'] = array('groupOfNames');
         $o['cn']          = 'emptyGroup';
-        $o['member']      = array('');
+        $o['member']      = array('cn=username1,ou=users,'.$topdn);
         ldap_add($connection, 'cn='.$o['cn'].',ou=groups,'.$topdn, $o);
+        ldap_mod_del($connection, "cn=emptyGroup,ou=groups,$topdn",
+            array($auth->config->memberattribute => "cn=username1,ou=users,$topdn"));
 
         // Configure the authentication plugin a bit.
         set_config('host_url', TEST_AUTH_LDAP_HOST_URL, 'auth_ldap');
