@@ -123,7 +123,7 @@ class local_ldap_sync_testcase extends advanced_testcase {
         $o = array();
         $o['objectClass'] = array('groupOfNames');
         $o['cn']          = 'emptyGroup';
-        $o['member']      = array();
+        $o['member']      = array('');
         ldap_add($connection, 'cn='.$o['cn'].',ou=groups,'.$topdn, $o);
 
         // Configure the authentication plugin a bit.
