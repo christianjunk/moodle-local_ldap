@@ -15,9 +15,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * PHPUnit tests for local_ldap.
+ * PHPUnit tests for local_ldap_syncplus.
  *
- * @package   local_ldap
+ * @package   local_ldap_syncplus
  * @copyright 2016 Lafayette College ITS
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -35,9 +35,9 @@ if (!defined('TEST_AUTH_LDAP_USER_TYPE')) {
 }
 
 /**
- * PHPUnit tests for local_ldap.
+ * PHPUnit tests for local_ldap_syncplus.
  *
- * @package   local_ldap
+ * @package   local_ldap_syncplus
  * @copyright 2016 Lafayette College ITS
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -52,7 +52,7 @@ class local_ldap_sync_testcase extends advanced_testcase {
 
         $this->resetAfterTest();
 
-        require_once($CFG->dirroot.'/auth/ldap/auth.php');
+        require_once($CFG->dirroot.'/auth/ldap_syncplus/auth.php');
         require_once($CFG->libdir.'/ldaplib.php');
 
         if (!defined('TEST_AUTH_LDAP_HOST_URL') or !defined('TEST_AUTH_LDAP_BIND_DN') or !defined('TEST_AUTH_LDAP_BIND_PW')
@@ -120,34 +120,34 @@ class local_ldap_sync_testcase extends advanced_testcase {
         ldap_add($connection, 'cn='.$o['cn'].',ou=groups,'.$topdn, $o);
 
         // Configure the authentication plugin a bit.
-        set_config('host_url', TEST_AUTH_LDAP_HOST_URL, 'auth_ldap');
-        set_config('start_tls', 0, 'auth_ldap');
-        set_config('ldap_version', 3, 'auth_ldap');
-        set_config('ldapencoding', 'utf-8', 'auth_ldap');
-        set_config('pagesize', '2', 'auth_ldap');
-        set_config('bind_dn', TEST_AUTH_LDAP_BIND_DN, 'auth_ldap');
-        set_config('bind_pw', TEST_AUTH_LDAP_BIND_PW, 'auth_ldap');
-        set_config('user_type', TEST_AUTH_LDAP_USER_TYPE, 'auth_ldap');
-        set_config('contexts', 'ou=users,'.$topdn.';ou=groups,'.$topdn, 'auth_ldap');
-        set_config('search_sub', 0, 'auth_ldap');
-        set_config('opt_deref', LDAP_DEREF_NEVER, 'auth_ldap');
-        set_config('user_attribute', 'cn', 'auth_ldap');
-        set_config('memberattribute', 'member', 'auth_ldap');
-        set_config('memberattribute_isdn', 0, 'auth_ldap');
-        set_config('creators', '', 'auth_ldap');
-        set_config('removeuser', AUTH_REMOVEUSER_KEEP, 'auth_ldap');
-        set_config('field_map_email', 'mail', 'auth_ldap');
-        set_config('field_updatelocal_email', 'oncreate', 'auth_ldap');
-        set_config('field_updateremote_email', '0', 'auth_ldap');
-        set_config('field_lock_email', 'unlocked', 'auth_ldap');
-        set_config('field_map_firstname', 'givenName', 'auth_ldap');
-        set_config('field_updatelocal_firstname', 'oncreate', 'auth_ldap');
-        set_config('field_updateremote_firstname', '0', 'auth_ldap');
-        set_config('field_lock_firstname', 'unlocked', 'auth_ldap');
-        set_config('field_map_lastname', 'sn', 'auth_ldap');
-        set_config('field_updatelocal_lastname', 'oncreate', 'auth_ldap');
-        set_config('field_updateremote_lastname', '0', 'auth_ldap');
-        set_config('field_lock_lastname', 'unlocked', 'auth_ldap');
+        set_config('host_url', TEST_AUTH_LDAP_HOST_URL, 'auth_ldap_syncplus');
+        set_config('start_tls', 0, 'auth_ldap_syncplus');
+        set_config('ldap_version', 3, 'auth_ldap_syncplus');
+        set_config('ldapencoding', 'utf-8', 'auth_ldap_syncplus');
+        set_config('pagesize', '2', 'auth_ldap_syncplus');
+        set_config('bind_dn', TEST_AUTH_LDAP_BIND_DN, 'auth_ldap_syncplus');
+        set_config('bind_pw', TEST_AUTH_LDAP_BIND_PW, 'auth_ldap_syncplus');
+        set_config('user_type', TEST_AUTH_LDAP_USER_TYPE, 'auth_ldap_syncplus');
+        set_config('contexts', 'ou=users,'.$topdn.';ou=groups,'.$topdn, 'auth_ldap_syncplus');
+        set_config('search_sub', 0, 'auth_ldap_syncplus');
+        set_config('opt_deref', LDAP_DEREF_NEVER, 'auth_ldap_syncplus');
+        set_config('user_attribute', 'cn', 'auth_ldap_syncplus');
+        set_config('memberattribute', 'member', 'auth_ldap_syncplus');
+        set_config('memberattribute_isdn', 0, 'auth_ldap_syncplus');
+        set_config('creators', '', 'auth_ldap_syncplus');
+        set_config('removeuser', AUTH_REMOVEUSER_KEEP, 'auth_ldap_syncplus');
+        set_config('field_map_email', 'mail', 'auth_ldap_syncplus');
+        set_config('field_updatelocal_email', 'oncreate', 'auth_ldap_syncplus');
+        set_config('field_updateremote_email', '0', 'auth_ldap_syncplus');
+        set_config('field_lock_email', 'unlocked', 'auth_ldap_syncplus');
+        set_config('field_map_firstname', 'givenName', 'auth_ldap_syncplus');
+        set_config('field_updatelocal_firstname', 'oncreate', 'auth_ldap_syncplus');
+        set_config('field_updateremote_firstname', '0', 'auth_ldap_syncplus');
+        set_config('field_lock_firstname', 'unlocked', 'auth_ldap_syncplus');
+        set_config('field_map_lastname', 'sn', 'auth_ldap_syncplus');
+        set_config('field_updatelocal_lastname', 'oncreate', 'auth_ldap_syncplus');
+        set_config('field_updateremote_lastname', '0', 'auth_ldap_syncplus');
+        set_config('field_lock_lastname', 'unlocked', 'auth_ldap_syncplus');
         $this->assertEquals(2, $DB->count_records('user'));
 
         // Sync the users.
@@ -182,7 +182,7 @@ class local_ldap_sync_testcase extends advanced_testcase {
 
         // We should find 2004 groups: the 2000 random groups, the three departments,
         // and the all employees group.
-        $plugin = new local_ldap();
+        $plugin = new local_ldap_syncplus();
         $groups = $plugin->ldap_get_grouplist();
         $this->assertEquals(2004, count($groups));
 
@@ -247,7 +247,7 @@ class local_ldap_sync_testcase extends advanced_testcase {
 
         $this->resetAfterTest();
 
-        require_once($CFG->dirroot.'/auth/ldap/auth.php');
+        require_once($CFG->dirroot.'/auth/ldap_syncplus/auth.php');
         require_once($CFG->libdir.'/ldaplib.php');
 
         if (!defined('TEST_AUTH_LDAP_HOST_URL') or !defined('TEST_AUTH_LDAP_BIND_DN') or !defined('TEST_AUTH_LDAP_BIND_PW')
@@ -299,34 +299,34 @@ class local_ldap_sync_testcase extends advanced_testcase {
         }
 
         // Configure the authentication plugin a bit.
-        set_config('host_url', TEST_AUTH_LDAP_HOST_URL, 'auth_ldap');
-        set_config('start_tls', 0, 'auth_ldap');
-        set_config('ldap_version', 3, 'auth_ldap');
-        set_config('ldapencoding', 'utf-8', 'auth_ldap');
-        set_config('pagesize', '2', 'auth_ldap');
-        set_config('bind_dn', TEST_AUTH_LDAP_BIND_DN, 'auth_ldap');
-        set_config('bind_pw', TEST_AUTH_LDAP_BIND_PW, 'auth_ldap');
-        set_config('user_type', TEST_AUTH_LDAP_USER_TYPE, 'auth_ldap');
-        set_config('contexts', 'ou=users,'.$topdn, 'auth_ldap');
-        set_config('search_sub', 0, 'auth_ldap');
-        set_config('opt_deref', LDAP_DEREF_NEVER, 'auth_ldap');
-        set_config('user_attribute', 'cn', 'auth_ldap');
-        set_config('memberattribute', 'member', 'auth_ldap');
-        set_config('memberattribute_isdn', 0, 'auth_ldap');
-        set_config('creators', '', 'auth_ldap');
-        set_config('removeuser', AUTH_REMOVEUSER_KEEP, 'auth_ldap');
-        set_config('field_map_email', 'mail', 'auth_ldap');
-        set_config('field_updatelocal_email', 'oncreate', 'auth_ldap');
-        set_config('field_updateremote_email', '0', 'auth_ldap');
-        set_config('field_lock_email', 'unlocked', 'auth_ldap');
-        set_config('field_map_firstname', 'givenName', 'auth_ldap');
-        set_config('field_updatelocal_firstname', 'oncreate', 'auth_ldap');
-        set_config('field_updateremote_firstname', '0', 'auth_ldap');
-        set_config('field_lock_firstname', 'unlocked', 'auth_ldap');
-        set_config('field_map_lastname', 'sn', 'auth_ldap');
-        set_config('field_updatelocal_lastname', 'oncreate', 'auth_ldap');
-        set_config('field_updateremote_lastname', '0', 'auth_ldap');
-        set_config('field_lock_lastname', 'unlocked', 'auth_ldap');
+        set_config('host_url', TEST_AUTH_LDAP_HOST_URL, 'auth_ldap_syncplus');
+        set_config('start_tls', 0, 'auth_ldap_syncplus');
+        set_config('ldap_version', 3, 'auth_ldap_syncplus');
+        set_config('ldapencoding', 'utf-8', 'auth_ldap_syncplus');
+        set_config('pagesize', '2', 'auth_ldap_syncplus');
+        set_config('bind_dn', TEST_AUTH_LDAP_BIND_DN, 'auth_ldap_syncplus');
+        set_config('bind_pw', TEST_AUTH_LDAP_BIND_PW, 'auth_ldap_syncplus');
+        set_config('user_type', TEST_AUTH_LDAP_USER_TYPE, 'auth_ldap_syncplus');
+        set_config('contexts', 'ou=users,'.$topdn, 'auth_ldap_syncplus');
+        set_config('search_sub', 0, 'auth_ldap_syncplus');
+        set_config('opt_deref', LDAP_DEREF_NEVER, 'auth_ldap_syncplus');
+        set_config('user_attribute', 'cn', 'auth_ldap_syncplus');
+        set_config('memberattribute', 'member', 'auth_ldap_syncplus');
+        set_config('memberattribute_isdn', 0, 'auth_ldap_syncplus');
+        set_config('creators', '', 'auth_ldap_syncplus');
+        set_config('removeuser', AUTH_REMOVEUSER_KEEP, 'auth_ldap_syncplus');
+        set_config('field_map_email', 'mail', 'auth_ldap_syncplus');
+        set_config('field_updatelocal_email', 'oncreate', 'auth_ldap_syncplus');
+        set_config('field_updateremote_email', '0', 'auth_ldap_syncplus');
+        set_config('field_lock_email', 'unlocked', 'auth_ldap_syncplus');
+        set_config('field_map_firstname', 'givenName', 'auth_ldap_syncplus');
+        set_config('field_updatelocal_firstname', 'oncreate', 'auth_ldap_syncplus');
+        set_config('field_updateremote_firstname', '0', 'auth_ldap_syncplus');
+        set_config('field_lock_firstname', 'unlocked', 'auth_ldap_syncplus');
+        set_config('field_map_lastname', 'sn', 'auth_ldap_syncplus');
+        set_config('field_updatelocal_lastname', 'oncreate', 'auth_ldap_syncplus');
+        set_config('field_updateremote_lastname', '0', 'auth_ldap_syncplus');
+        set_config('field_lock_lastname', 'unlocked', 'auth_ldap_syncplus');
         $this->assertEquals(2, $DB->count_records('user'));
 
         // Sync the users.
@@ -365,7 +365,7 @@ class local_ldap_sync_testcase extends advanced_testcase {
         $staffptid = cohort_add_cohort($cohort);
 
         // Count the distinct attribute values.
-        $plugin = new local_ldap();
+        $plugin = new local_ldap_syncplus();
         $attributes = $plugin->get_attribute_distinct_values();
         $this->assertEquals(4, count($attributes));
 

@@ -17,7 +17,7 @@
 /**
  * Cohort sync with LDAP attribute script. This is deprecated.
  *
- * @package    local_ldap
+ * @package    local_ldap_syncplus
  * @copyright  2010 Patrick Pollet - based on code by Jeremy Guittirez
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -32,7 +32,7 @@ require_once($CFG->libdir.'/clilib.php');
 set_debugging(DEBUG_DEVELOPER, true);
 
 if ( !is_enabled_auth('cas') && !is_enabled_auth('ldap')) {
-    cli_problem('[LOCAL LDAP] ' . get_string('pluginnotenabled', 'auth_ldap'));
+    cli_problem('[LOCAL LDAP] ' . get_string('pluginnotenabled', 'auth_ldap_syncplus'));
     die;
 }
 
@@ -40,11 +40,11 @@ cli_problem('[LOCAL LDAP] The cohort sync cron has been deprecated. Please use t
 
 $plugin = new auth_plugin_cohort();
 
-// Abort execution of the CLI script if the local_ldap\task\group_sync_task is enabled.
-$taskdisabled = \core\task\manager::get_scheduled_task('local_ldap\task\attribute_sync_task');
+// Abort execution of the CLI script if the local_ldap_syncplus\task\group_sync_task is enabled.
+$taskdisabled = \core\task\manager::get_scheduled_task('local_ldap_syncplus\task\attribute_sync_task');
 if (!$taskdisabled->get_disabled()) {
     cli_error('[LOCAL LDAP] The scheduled task attributes_sync_task is enabled, the cron execution has been aborted.');
 }
 
-$localldap = new local_ldap();
+$localldap = new local_ldap_syncplus();
 $localldap->sync_cohorts_by_attribute();

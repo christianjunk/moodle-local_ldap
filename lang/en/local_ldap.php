@@ -15,9 +15,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * local_ldap language strings.
+ * local_ldap_syncplus language strings.
  *
- * @package   local_ldap
+ * @package   local_ldap_syncplus
  * @copyright 2013 Patrick Pollet
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -40,7 +40,7 @@ $string['group_attribute'] = 'Group attribute';
 $string['group_class_desc'] = 'Set if your groups are of another class such as group, groupOfNames...';
 $string['group_class'] = 'Group class';
 $string['groupsynctask'] = 'Synchronize cohorts from LDAP groups';
-$string['pluginname'] = 'LDAP syncing scripts';
+$string['pluginname'] = 'LDAP syncing scripts (Sync Plus)';
 $string['privacy:metadata'] = 'The LDAP syncing scripts do not store any data.';
 $string['process_nested_groups_desc'] = 'If selected, LDAP groups included in groups will be processed';
 $string['process_nested_groups'] = 'Process nested groups';

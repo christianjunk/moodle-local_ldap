@@ -15,9 +15,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Task definitions for local_ldap.
+ * Task definitions for local_ldap_syncplus.
  *
- * @package   local_ldap
+ * @package   local_ldap_syncplus
  * @category  task
  * @copyright 2016 Lafayette College ITS
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -27,7 +27,7 @@ defined('MOODLE_INTERNAL') || die();
 
 $tasks = array(
     array(
-        'classname' => 'local_ldap\task\attribute_sync_task',
+        'classname' => 'local_ldap_syncplus\task\attribute_sync_task',
         'blocking' => 0,
         'minute' => '0',
         'hour' => '*',
@@ -37,7 +37,7 @@ $tasks = array(
         'disabled' => 1
     ),
     array(
-        'classname' => 'local_ldap\task\group_sync_task',
+        'classname' => 'local_ldap_syncplus\task\group_sync_task',
         'blocking' => 0,
         'minute' => '0',
         'hour' => '*',

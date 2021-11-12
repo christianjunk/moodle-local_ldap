@@ -17,7 +17,7 @@
 /**
  * Code for handling synching Moodle's cohorts with LDAP
  *
- * @package local_ldap
+ * @package local_ldap_syncplus
  * @copyright 2013 onwards Patrick Pollet
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -26,16 +26,16 @@ defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->dirroot . '/group/lib.php');
 require_once($CFG->dirroot . '/cohort/lib.php');
-require_once($CFG->dirroot . '/auth/ldap/auth.php');
+require_once($CFG->dirroot . '/auth/ldap_syncplus/auth.php');
 
 /**
  * LDAP cohort sychronization.
  *
- * @package local_ldap
+ * @package local_ldap_syncplus
  * @copyright 2013 onwards Patrick Pollet
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class local_ldap extends auth_plugin_ldap {
+class local_ldap_syncplus extends auth_plugin_ldap_syncplus {
 
     /** @var array Avoid infinite loop with nested groups in 'funny' directories. */
     private $antirecursionarray;
@@ -55,7 +55,7 @@ class local_ldap extends auth_plugin_ldap {
             $this->errorlogtag = '[AUTH CAS] ';
         } else if (is_enabled_auth('ldap')) {
             $this->authtype = 'ldap';
-            $this->roleauth = 'auth_ldap';
+            $this->roleauth = 'auth_ldap_syncplus';
             $this->errorlogtag = '[AUTH LDAP] ';
         } else {
             return false;
@@ -65,7 +65,7 @@ class local_ldap extends auth_plugin_ldap {
         $this->init_plugin($this->authtype);
 
         // Get my specific settings.
-        $extra = get_config('local_ldap');
+        $extra = get_config('local_ldap_syncplus');
         $this->merge_config($extra, 'group_attribute', 'cn');
         $this->merge_config($extra, 'group_class', 'groupOfNames');
         $this->merge_config($extra, 'process_nested_groups', 0);
@@ -702,7 +702,7 @@ class local_ldap extends auth_plugin_ldap {
     /**
      * Synchronizes cohorts by LDAP attribute.
      *
-     * @see \local_ldap\task\attribute_sync_task\execute()
+     * @see \local_ldap_syncplus\task\attribute_sync_task\execute()
      * @return bool always returns true.
      */
     public function sync_cohorts_by_attribute() {
@@ -728,7 +728,7 @@ class local_ldap extends auth_plugin_ldap {
                 $cohort = new stdClass();
                 $cohort->name = $cohort->idnumber = $cohortname;
                 $cohort->contextid = context_system::instance()->id;
-                $cohort->description = get_string('cohort_synchronized_with_attribute', 'local_ldap',
+                $cohort->description = get_string('cohort_synchronized_with_attribute', 'local_ldap_syncplus',
                     $this->config->cohort_synching_ldap_attribute_attribute);
                 $cohortid = cohort_add_cohort($cohort);
             } else {
@@ -755,7 +755,7 @@ class local_ldap extends auth_plugin_ldap {
     /**
      * Synchronizes cohorts by LDAP group.
      *
-     * @see \local_ldap\task\group_sync_task\execute()
+     * @see \local_ldap_syncplus\task\group_sync_task\execute()
      * @return bool always returns true.
      */
     public function sync_cohorts_by_group() {
@@ -776,7 +776,7 @@ class local_ldap extends auth_plugin_ldap {
                 $cohort = new stdClass();
                 $cohort->name = $cohort->idnumber = $groupname;
                 $cohort->contextid = context_system::instance()->id;
-                $cohort->description = get_string('cohort_synchronized_with_group', 'local_ldap', $groupname);
+                $cohort->description = get_string('cohort_synchronized_with_group', 'local_ldap_syncplus', $groupname);
                 $cohortid = cohort_add_cohort($cohort);
             } else {
                 $cohortid = $cohort->id;

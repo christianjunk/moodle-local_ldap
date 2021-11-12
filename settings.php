@@ -15,9 +15,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Settings for local_ldap.
+ * Settings for local_ldap_syncplus.
  *
- * @package local_ldap
+ * @package local_ldap_syncplus
  * @copyright 2013 onwards Patrick Pollet {@link mailto:pp@patrickpollet.net}
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -25,68 +25,68 @@
 defined('MOODLE_INTERNAL') || die;
 
 if ($hassiteconfig) {
-    $settings = new admin_settingpage('local_ldap', get_string('pluginname', 'local_ldap'));
+    $settings = new admin_settingpage('local_ldap_syncplus', get_string('pluginname', 'local_ldap_syncplus'));
 
     $settings->add(new admin_setting_heading('synccohortgroup',
-                    get_string('synccohortgroup', 'local_ldap'),
-                    get_string('synccohortgroup_info', 'local_ldap')));
+                    get_string('synccohortgroup', 'local_ldap_syncplus'),
+                    get_string('synccohortgroup_info', 'local_ldap_syncplus')));
 
     $name = 'group_attribute';
-    $title = get_string($name, 'local_ldap');
-    $description = get_string($name.'_desc', 'local_ldap');
-    $setting = new admin_setting_configtext('local_ldap/'.$name, $title, $description, 'cn');
+    $title = get_string($name, 'local_ldap_syncplus');
+    $description = get_string($name.'_desc', 'local_ldap_syncplus');
+    $setting = new admin_setting_configtext('local_ldap_syncplus/'.$name, $title, $description, 'cn');
     $settings->add($setting);
 
     $name = 'group_class';
-    $title = get_string($name, 'local_ldap');
-    $description = get_string($name.'_desc', 'local_ldap');
-    $setting = new admin_setting_configtext('local_ldap/'.$name, $title, $description, 'groupOfNames');
+    $title = get_string($name, 'local_ldap_syncplus');
+    $description = get_string($name.'_desc', 'local_ldap_syncplus');
+    $setting = new admin_setting_configtext('local_ldap_syncplus/'.$name, $title, $description, 'groupOfNames');
     $settings->add($setting);
 
     $name = 'real_user_attribute';
-    $title = get_string($name, 'local_ldap');
-    $description = get_string($name.'_desc', 'local_ldap');
-    $setting = new admin_setting_configtext('local_ldap/'.$name, $title, $description, '');
+    $title = get_string($name, 'local_ldap_syncplus');
+    $description = get_string($name.'_desc', 'local_ldap_syncplus');
+    $setting = new admin_setting_configtext('local_ldap_syncplus/'.$name, $title, $description, '');
     $settings->add($setting);
 
     $name = 'process_nested_groups';
-    $title = get_string($name, 'local_ldap');
-    $description = get_string($name.'_desc', 'local_ldap');
-    $setting = new admin_setting_configcheckbox('local_ldap/'.$name, $title, $description, false);
+    $title = get_string($name, 'local_ldap_syncplus');
+    $description = get_string($name.'_desc', 'local_ldap_syncplus');
+    $setting = new admin_setting_configcheckbox('local_ldap_syncplus/'.$name, $title, $description, false);
     $settings->add($setting);
 
     $name = 'cohort_synching_ldap_groups_autocreate_cohorts';
-    $title = get_string($name, 'local_ldap');
-    $description = get_string($name.'_desc', 'local_ldap');
-    $setting = new admin_setting_configcheckbox('local_ldap/'.$name, $title, $description, false);
+    $title = get_string($name, 'local_ldap_syncplus');
+    $description = get_string($name.'_desc', 'local_ldap_syncplus');
+    $setting = new admin_setting_configcheckbox('local_ldap_syncplus/'.$name, $title, $description, false);
     $settings->add($setting);
 
     $settings->add(new admin_setting_heading('synccohortattribute',
-                    get_string('synccohortattribute', 'local_ldap'),
-                    get_string('synccohortattribute_info', 'local_ldap')));
+                    get_string('synccohortattribute', 'local_ldap_syncplus'),
+                    get_string('synccohortattribute_info', 'local_ldap_syncplus')));
 
     $name = 'cohort_synching_ldap_attribute_attribute';
-    $title = get_string($name, 'local_ldap');
-    $description = get_string($name.'_desc', 'local_ldap');
-    $setting = new admin_setting_configtext('local_ldap/'.$name, $title, $description, 'eduPersonAffiliation');
+    $title = get_string($name, 'local_ldap_syncplus');
+    $description = get_string($name.'_desc', 'local_ldap_syncplus');
+    $setting = new admin_setting_configtext('local_ldap_syncplus/'.$name, $title, $description, 'eduPersonAffiliation');
     $settings->add($setting);
 
     $name = 'cohort_synching_ldap_attribute_idnumbers';
-    $title = get_string($name, 'local_ldap');
-    $description = get_string($name.'_desc', 'local_ldap');
-    $setting = new admin_setting_configtext('local_ldap/'.$name, $title, $description, '');
+    $title = get_string($name, 'local_ldap_syncplus');
+    $description = get_string($name.'_desc', 'local_ldap_syncplus');
+    $setting = new admin_setting_configtext('local_ldap_syncplus/'.$name, $title, $description, '');
     $settings->add($setting);
 
     $name = 'cohort_synching_ldap_attribute_objectclass';
-    $title = get_string($name, 'local_ldap');
-    $description = get_string($name.'_desc', 'local_ldap');
-    $setting = new admin_setting_configtext('local_ldap/'.$name, $title, $description, '');
+    $title = get_string($name, 'local_ldap_syncplus');
+    $description = get_string($name.'_desc', 'local_ldap_syncplus');
+    $setting = new admin_setting_configtext('local_ldap_syncplus/'.$name, $title, $description, '');
     $settings->add($setting);
 
     $name = 'cohort_synching_ldap_attribute_autocreate_cohorts';
-    $title = get_string($name, 'local_ldap');
-    $description = get_string($name.'_desc', 'local_ldap');
-    $setting = new admin_setting_configcheckbox('local_ldap/'.$name, $title, $description, false);
+    $title = get_string($name, 'local_ldap_syncplus');
+    $description = get_string($name.'_desc', 'local_ldap_syncplus');
+    $setting = new admin_setting_configcheckbox('local_ldap_syncplus/'.$name, $title, $description, false);
     $settings->add($setting);
 
     $ADMIN->add('localplugins', $settings);

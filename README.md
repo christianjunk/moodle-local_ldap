@@ -1,9 +1,9 @@
 LDAP syncing scripts
 =====================
 
-[![Build Status](https://travis-ci.com/LafColITS/moodle-local_ldap.svg?branch=main)](https://travis-ci.com/LafColITS/moodle-local_ldap)
+[![Build Status](https://travis-ci.com/LafColITS/moodle-local_ldap_syncplus.svg?branch=main)](https://travis-ci.com/LafColITS/moodle-local_ldap_syncplus)
 
-This plugin synchronizes Moodle cohorts against an LDAP directory using either group memberships or attribute values. This is a continuation of Patrick Pollet's [local_ldap](https://github.com/patrickpollet/moodle_local_ldap) plugin, which in turn was inspired by [MDL-25011](https://tracker.moodle.org/browse/MDL-25011) and [MDL-25054](https://tracker.moodle.org/browse/MDL-25054).
+This plugin synchronizes Moodle cohorts against an LDAP directory using either group memberships or attribute values. This is a continuation of Patrick Pollet's [local_ldap_syncplus](https://github.com/patrickpollet/moodle_local_ldap) plugin, which in turn was inspired by [MDL-25011](https://tracker.moodle.org/browse/MDL-25011) and [MDL-25054](https://tracker.moodle.org/browse/MDL-25054).
 
 Requirements
 ------------

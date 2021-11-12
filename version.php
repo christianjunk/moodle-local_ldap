@@ -15,17 +15,17 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * local_ldap version information.
+ * local_ldap_syncplus version information.
  *
- * @package   local_ldap
+ * @package   local_ldap_syncplus
  * @copyright 2013 Patrick Pollet
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->component = 'local_ldap';
-$plugin->version   = 2020110901;
-$plugin->requires  = 2019052000;
+$plugin->component = 'local_ldap_syncplus';
+$plugin->version   = 2021111201;
+$plugin->requires  = 2021051700;
 $plugin->maturity  = MATURITY_STABLE;
 $plugin->release   = 'v3.7.1';
